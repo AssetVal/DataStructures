@@ -2,9 +2,8 @@
 
 class Node{ // >-An object with data and a pointer->
   constructor( entry ){
-    this.index = undefined;
     this.entry = entry;
-    this.next = undefined; // <-Single pointer, points to the next object in line-<
+    this.next = null; // <-Single pointer, points to the next object in line-<
   };
 }
 
@@ -16,7 +15,19 @@ class SingLinkList{ // >>-Singly Linked List->>
 
   // >>=Primary Methods=<<
   //
-  pin( entry ){ // >>-Adds Entry to the end of the list->>
+  pin( value ) { // <<-Pins an entry to the beginning of the list-<<
+    if (this.head === null){ // <--Iz the list is empty? |>
+      this.head = new Node(value) // then the value is added as the head-<
+    } else {
+      let temp = this.head;
+      this.head = new Node(value);
+      this.head.next = temp;
+    }
+    this.size++;
+  }
+/*
+This block represents an old method
+  insert( entry ){ // >>-Adds Entry to the end of the list->>
     let node = new Node( entry );
     let current;
 
@@ -30,9 +41,9 @@ class SingLinkList{ // >>-Singly Linked List->>
       current.next = node; // <<=Adds Entry=<<
     }
 
-    this.size++;
+    this.size += 1;
   };
-
+*/
   insertEntryAt( entry, index )
   { // >>-Inserts an Entry at the specified position Index->>
     if( index > 0 && index > this.size ){ // <<=Checks if Index is a valid position=<<
