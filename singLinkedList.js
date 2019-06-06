@@ -16,17 +16,78 @@ class SingLinkList{ // >>-Singly Linked List->>
   // >>=Primary Methods=<<
   //
   pin( value ) { // <<-Pins an entry to the beginning of the list-<<
-    if (this.head === null){ // <--Iz the list is empty? |>
+    if ( this.head === null ){ // <--Iz the list is empty? |>
       this.head = new Node(value) // then the value is added as the head-<
     } else {
-      let temp = this.head;
-      this.head = new Node(value);
-      this.head.next = temp;
+      let temp = this.head; // <--Stores the old head-<
+      this.head = new Node(value); // <--Sets new node as the new head-<
+      this.head.next = temp; // <--Points the new head to what is now its previous entry-<
     }
     this.size++;
   }
-/*
-This block represents an old method
+
+  extract( value ) {
+    let currentNode = this.head;
+    if ( currentNode.entry === value ){ // <--Is the value pointing to the head? |>
+      this.head = currentNode.next; // |> then dereference it-<
+      this.size--;
+      return this;
+    } else {
+      let previousNode = currentNode;
+      while ( currentNode.next ){
+        if ( currentNode.data === value ){
+          previousNode.next = currentNode.next;
+          previousNode = currentNode;
+          currentNode = currentNode.next;
+          break;
+        }
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+      }
+      if ( currentNode.entry === value ){
+        previousNode.next = null;
+      }
+      this.size--;
+      return this;
+    }
+  }
+
+  millet() { // <<-Removes the head and returns its contents-<<
+    if ( this.head !== null ){
+      const result = this.head.entry; // <--Stores the head-<
+      this.head = this.head.next; // <--New head-<
+      this.head.previous = null; // <--Dereference old head-<
+      this.size--;
+      return result;
+    } else {
+      console.error('There seems to be no list here')
+      return -1;
+    }
+  }
+
+  /*
+   This block represents an old method
+  xtract( entry )
+  { // >>-Remove a specified Entry by name->>
+    let current = this.head;
+    let previous = null;
+
+    while( current ){ // <-Iterates until...
+      if( current.entry === entry ){ // ...It finds the specified value-<
+        if( previous == null ){
+          this.head = current.next;
+        } else {
+          previous.next = current.next; // <<=Removes Entry=<<
+        }
+        this.size--;
+        return current.entry; // <<=Returns removed Entry=<<
+      }
+      previous = current;
+      current = current.next;
+    }
+    return -1;
+  };
+
   insert( entry ){ // >>-Adds Entry to the end of the list->>
     let node = new Node( entry );
     let current;
@@ -99,30 +160,8 @@ This block represents an old method
     }
   };
 
-  extract( entry )
-  { // >>-Remove a specified Entry by name->>
-    let current = this.head;
-    let previous = null;
-
-    while( current ){ // <-Iterates until...
-      if( current.entry === entry ){ // ...It finds the specified value-<
-        if( previous == null ){
-          this.head = current.next;
-        } else {
-          previous.next = current.next; // <<=Removes Entry=<<
-        }
-        this.size--;
-        return current.entry; // <<=Returns removed Entry=<<
-      }
-      previous = current;
-      current = current.next;
-    }
-    return -1;
-  };
-
   // >>=Helper Methods=<<
-  indexOf( entry )
-  { // >>-Find Index of an Entry->>
+  indexOf( entry ) { // >>-Find Index of an Entry->>
     let count = 0;
     let current = this.head;
 
@@ -132,8 +171,8 @@ This block represents an old method
       count++;
       current = current.next;
     }
-    return -1;
   };
+
 
   isEmpty() // <<-Check if list is empty-<<
   { return this.size === 0; };
@@ -141,8 +180,7 @@ This block represents an old method
   listSize()   // <<-List Size check-<<
   { return this.size; };
 
-  listContents ()
-  { // <<-Returns List as an array-<<
+  listContents() { // <<-Returns List as an array-<<
     let current = this.head;
     let elements = [];
     while ( current ) {
