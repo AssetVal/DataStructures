@@ -8,7 +8,7 @@ const linksList = new SingLinkedList();
 
 log(linksList.isEmpty());
 
-linksList.pin('Wooden Sword');
+linksList.pin('Sword');
 
 table(linksList.listContents());
 
@@ -17,17 +17,21 @@ linksList.pin('Wand');
 linksList.pin('Bottle');
 
 log(linksList);
+log(linksList.listContents());
 
 log(linksList.isEmpty());
 log(`The list is ${linksList.listSize()} items long.`);
 table(linksList.listContents());
 
 linksList.millet();
-log(`Contains the Wooden Sword?: ${linksList.doesContain('Wooden Sword')}`);
+log(`Contains the Sword?: ${linksList.doesContain('Sword')}`);
+log(`Contains the Bottle?: ${linksList.doesContain('Bottle')}`);
+log(`Contains the Wand?: ${linksList.doesContain('Wand')}`);
+log(`Wand is at index: ${linksList.indexOf('Wand')}`);
 log(`The list is ${linksList.listSize()} items long.`);
 
-linksList.extract('Bottle');
-log(`Contains the Bottle?: ${linksList.doesContain('Bottle')}`);
+linksList.extract('Shield');
+log(`Contains the Shield?: ${linksList.doesContain('Shield')}`);
 log(`The list is ${linksList.listSize()} items long.`);
 table(linksList.listContents());
 

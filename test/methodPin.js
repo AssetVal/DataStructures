@@ -4,7 +4,9 @@
 // >>=Method Test for Pin=<<
 
 const pin = require('../singLinkedList.js');
-const expect = require('chai').expect;
+const assert = require('chai').assert;
+const list =
+
 
 describe()
 */
