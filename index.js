@@ -23,7 +23,10 @@ log(linksList.isEmpty());
 log(`The list is ${linksList.listSize()} items long.`);
 table(linksList.listContents());
 
+log(linksList.scry());
 linksList.millet();
+log(linksList.scry());
+
 log(`Contains the Sword?: ${linksList.doesContain('Sword')}`);
 log(`Contains the Bottle?: ${linksList.doesContain('Bottle')}`);
 log(`Contains the Wand?: ${linksList.doesContain('Wand')}`);

@@ -72,9 +72,8 @@ class SingLinkList{ // >>-Singly Linked List->>
     if (this.head !== null){
       const result = this.head.entry; // <--Stores the head-<
       const newHead = this.head.next;
-      this.head = null;
+      this.head = undefined;
       this.head = newHead; // <--New head-<
-      this.head.next = null; // <--Dereference old head-<
       this.size -= 1;
       return result;
     }
@@ -114,6 +113,8 @@ class SingLinkList{ // >>-Singly Linked List->>
   isEmpty() { return this.size === 0; } // <<-Check if list is empty-<<
 
   listSize() { return this.size; } // <<-List Size check-<<
+
+  scry() { return this.head; }
 
   indexOf(entry) { // >>-Find Index of an Entry->>
     let count = 0,
