@@ -3,37 +3,72 @@
 const log = function(x) { console.log(x); };
 const table = function(x) { console.table(x); };
 const SingLinkedList = require('./singLinkedList');
-const DoubLinkList = require('./doubLinkList')
+const DoubLinkList = require('./doubLinkList');
+
+const linksList = ['Sword', 'Shield', 'Tunic', 'Net'];
+const sList = new SingLinkedList();
+const dList = new DoubLinkList();
+
+log(dList.isEmpty());
+log(sList.isEmpty());
+
+linksList.forEach(item => sList.pin(item));
+table(sList.listContents());
+
+sList.invert();
+table(sList.listContents());
 
 /*
-const linksList = new SingLinkedList();
+ linksList.forEach(item => dList.push(item));
 
-log(linksList.isEmpty());
+ table(dList.listContents());
 
-linksList.pin('Sword');
+ linksList.forEach(item => dList.shift(item));
+ log(`Length - ${dList.listLength()}:`);
 
-table(linksList.listContents());
+ table(dList.listContents());
 
-linksList.pin('Shield');
-linksList.pin('Wand');
-linksList.pin('Bottle');
+ dList.millet();
+ log(`Length - ${dList.listLength()}:`);
+ table(dList.listContents());
 
-log(linksList);
-log(linksList.listContents());
+ dList.pop();
+ dList.pop();
+ table(dList.listContents());
 
-log(linksList.isEmpty());
-log(`The list is ${linksList.listSize()} items long.`);
-table(linksList.listContents());
+ log(`The shield is ${dList.findFromHead('Shield')} from the head`);
+ log(`The other shield is at position ${dList.findFromTail('Shield')}`);
+ log(dList.scry());
+ log(dList.peek());
 
-log(linksList.scry());
-linksList.millet();
-log(linksList.scry());
+ >>= ~> single list test <~ =<<
 
-log(`Contains the Sword?: ${linksList.doesContain('Sword')}`);
-log(`Contains the Bottle?: ${linksList.doesContain('Bottle')}`);
-log(`Contains the Wand?: ${linksList.doesContain('Wand')}`);
-log(`Wand is at index: ${linksList.indexOf('Wand')}`);
-log(`The list is ${linksList.listSize()} items long.`);
+
+
+sList.pin('Sword');
+
+table(sList.listContents());
+
+sList.pin('Shield');
+sList.pin('Wand');
+sList.pin('Bottle');
+
+log(sList);
+log(sList.listContents());
+
+log(sList.isEmpty());
+log(`The list is ${sList.listSize()} items long.`);
+table(sList.listContents());
+
+log(sList.scry());
+sList.millet();
+log(sList.scry());
+
+log(`Contains the Sword?: ${sList.doesContain('Sword')}`);
+log(`Contains the Bottle?: ${sList.doesContain('Bottle')}`);
+log(`Contains the Wand?: ${sList.doesContain('Wand')}`);
+log(`Wand is at index: ${sList.indexOf('Wand')}`);
+log(`The list is ${sList.listSize()} items long.`);
 
 linksList.extract('Shield');
 log(`Contains the Shield?: ${linksList.doesContain('Shield')}`);

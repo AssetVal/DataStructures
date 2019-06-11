@@ -2,7 +2,7 @@
 
 class Node {
   constructor(value){
-    this._entry = entry;
+    this._entry = value;
     this._next = null;
     this._previous = null;
     Object.seal(this);
@@ -93,7 +93,7 @@ class DoubLinkList{
         this.head = undefined;
       } else {
         this.tail = this.tail.previous;
-        this.tail.previous = null;
+        this.tail.next = null;
       }
     }
     this.length -= 1;
@@ -101,24 +101,61 @@ class DoubLinkList{
   }
 
   findFromHead(value){
-    let currentNode = this.head;
+    let currentNode = this.head,
+      count = 0;
     while (currentNode.next){
       if (currentNode.entry === value){
-        return true;
+        return count;
       }
+      count += 1;
       currentNode = currentNode.next;
     }
     return false;
   }
 
   findFromTail(value){
-    let currentNode = this.tail;
+    let currentNode = this.tail,
+      count = this.length - 1;
     while (currentNode.previous){
-      if(currentNode === value){
-        return true;
+      if (currentNode.entry === value){
+        return count;
       }
+      count -= 1;
       currentNode = currentNode.previous;
     }
     return false;
   }
+
+  // >>=Helper Methods=<<
+  //
+  isEmpty() { return this.length === 0; } // <<-Check if list is empty-<<
+
+  listLength() { return this.length; } // <<-List Size check-<<
+
+  scry() { return this.head.entry; }
+
+  peek() { return this.tail.entry; }
+
+  listContents() { // <<-Returns List as an array-<<
+    let current = this.head;
+    const elements = [];
+    while (current) {
+      elements.push(current.entry);
+      current = current.next;
+    }
+    return elements;
+  }
+
+  indexOf(entry) { // >>-Find Index of an Entry->>
+    let count = 0,
+      current = this.head;
+
+    while (current){
+      if (current.entry === entry) return count;
+      count += 1;
+      current = current.next;
+    }
+  }
 }
+
+module.exports = DoubLinkList;

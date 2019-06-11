@@ -108,6 +108,21 @@ class SingLinkList{ // >>-Singly Linked List->>
     this.size += 1;
   }
 
+  invert(){
+    let currentNode = this.head,
+      previousNode = null,
+      next;
+    while (currentNode){
+      next = currentNode.next;
+      currentNode.next = previousNode;
+      previousNode = currentNode;
+      if (!next){ break; }
+      currentNode = next;
+    }
+    this.head = currentNode;
+    return currentNode;
+  }
+
   // >>=Helper Methods=<<
   //
   isEmpty() { return this.size === 0; } // <<-Check if list is empty-<<
