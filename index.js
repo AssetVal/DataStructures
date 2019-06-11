@@ -21,6 +21,12 @@ table(dList.listContents());
 dList.invert();
 table(dList.listContents());
 
+linksList.forEach(item => dList.push(item));
+table(dList.listContents());
+
+dList.cullDupes();
+table(dList.listContents());
+
 /*
 sList.invert();
 table(sList.listContents());

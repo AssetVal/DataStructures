@@ -158,6 +158,23 @@ class DoubLinkList{
     return false;
   }
 
+  cullDupes(){
+    const record = {};
+    let check = this.head,
+      previousNode = null;
+    while (check){
+      if (record[check.entry]){
+        previousNode.next.previous = check.previous;
+        previousNode.next = check.next;
+        this.length -= 1;
+      } else {
+        record[check.entry] = true;
+        previousNode = check;
+      }
+      check = check.next;
+    }
+  }
+
   // >>=Helper Methods=<<
   //
   isEmpty() { return this.length === 0; } // <<-Check if list is empty-<<

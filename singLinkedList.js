@@ -111,6 +111,22 @@ class SingLinkList{ // >>-Singly Linked List->>
     return value;
   }
 
+  cullDupes(){
+    const record = {};
+    let check = this.head,
+      previous = null;
+    while (check){
+      if (record[check.entry]){
+        previous.next = check.next;
+        this.size -= 1;
+      } else {
+        record[check.entry] = true;
+        previous = check;
+      }
+      check = check.next;
+    }
+  }
+
   insertEntryAt(entry, index) { // >>-Inserts an Entry at the specified position Index->>
     if (index > 0 && index > this.size){ // <<=Checks if Index is a valid position=<<
       console.error("There aren't so many entries in the list.");
