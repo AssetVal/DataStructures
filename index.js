@@ -12,9 +12,13 @@ const dList = new DoubLinkList();
 log(dList.isEmpty());
 log(sList.isEmpty());
 
-linksList.forEach(item => sList.pin(item));
-table(sList.listContents());
+linksList.forEach(item => dList.push(item));
+table(dList.listContents());
 
+dList.insertAfter('Sword', 'Potion');
+table(dList.listContents());
+
+/*
 sList.invert();
 table(sList.listContents());
 
@@ -28,7 +32,7 @@ sList.pop();
 sList.pop();
 table(sList.listContents());
 
-/*
+
  linksList.forEach(item => dList.push(item));
 
  table(dList.listContents());

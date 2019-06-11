@@ -134,7 +134,6 @@ class SingLinkList{ // >>-Singly Linked List->>
       node.next = current; // <<=Add Entry=<<
       previous.next = node;
     }
-
     this.size += 1;
   }
 

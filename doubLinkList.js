@@ -100,6 +100,23 @@ class DoubLinkList{
     return result;
   }
 
+
+  insertAfter(target, value){
+    const node = new Node(value);
+    let currentNode = this.head;
+    while (currentNode){
+      if (currentNode.entry === target){
+        currentNode.next.previous = node;
+        node.next = currentNode.next;
+        currentNode.next = node;
+        node.previous = currentNode;
+        break;
+      }
+      currentNode = currentNode.next;
+    }
+    this.length += 1;
+  }
+
   findFromHead(value){
     let currentNode = this.head,
       count = 0;
