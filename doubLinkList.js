@@ -117,6 +117,21 @@ class DoubLinkList{
     this.length += 1;
   }
 
+  invert(){
+    let currentNode = this.head, // <--Start at the head-<
+      previousNode = null;
+    while (currentNode){
+      const next = currentNode.next; // <--The loop looks ahead at the next pointer-<
+      currentNode.previous = currentNode.next;
+      currentNode.next = previousNode; // <--On first itt. the head's 'next' is rereferenced to NULL, and what was the head will be passed forward to be the next rereference point-<
+      if (next === null) break; // <--If next is pointing to NULL, we know to not go there-<
+      previousNode = currentNode;
+      currentNode = next;
+    }
+    this.tail = this.head;
+    this.head = currentNode;
+  }
+
   findFromHead(value){
     let currentNode = this.head,
       count = 0;

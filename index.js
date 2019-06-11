@@ -18,6 +18,9 @@ table(dList.listContents());
 dList.insertAfter('Sword', 'Potion');
 table(dList.listContents());
 
+dList.invert();
+table(dList.listContents());
+
 /*
 sList.invert();
 table(sList.listContents());
