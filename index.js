@@ -3,7 +3,9 @@
 const log = function(x) { console.log(x); };
 const table = function(x) { console.table(x); };
 const SingLinkedList = require('./singLinkedList');
+const DoubLinkList = require('./doubLinkList')
 
+/*
 const linksList = new SingLinkedList();
 
 log(linksList.isEmpty());
@@ -45,3 +47,4 @@ linksList.insertEntryAt('Potion', 1);
 log(`The list is ${linksList.listSize()} items long.`);
 table(linksList.listContents());
 log(linksList);
+*/
