@@ -24,6 +24,10 @@ table(sList.listContents());
 linksList.forEach(item => sList.push(item));
 table(sList.listContents());
 
+sList.pop();
+sList.pop();
+table(sList.listContents());
+
 /*
  linksList.forEach(item => dList.push(item));
 

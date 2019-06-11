@@ -61,6 +61,31 @@ class SingLinkList{ // >>-Singly Linked List->>
     this.size += 1;
   }
 
+  millet() { // <<-Removes the head and returns its contents-<<
+    if (this.head !== null){
+      const result = this.head.entry; // <--Stores the head-<
+      const newHead = this.head.next;
+      this.head = undefined;
+      this.head = newHead; // <--New head-<
+      this.size -= 1;
+      return result;
+    }
+    console.error('There seems to be no list here');
+    return -1;
+  }
+
+  pop(){
+    let currentNode = this.head,
+      newEnd;
+    while (currentNode.next){
+      newEnd = currentNode;
+      currentNode = currentNode.next;
+    }
+    if (currentNode.next === null){
+      newEnd.next = null;
+    }
+  }
+
   extract(value) {
     let currentNode = this.head;
     if (currentNode.entry === value){ // <--Is the value pointing to the head? |>
@@ -84,19 +109,6 @@ class SingLinkList{ // >>-Singly Linked List->>
     }
     this.size -= 1;
     return value;
-  }
-
-  millet() { // <<-Removes the head and returns its contents-<<
-    if (this.head !== null){
-      const result = this.head.entry; // <--Stores the head-<
-      const newHead = this.head.next;
-      this.head = undefined;
-      this.head = newHead; // <--New head-<
-      this.size -= 1;
-      return result;
-    }
-    console.error('There seems to be no list here');
-    return -1;
   }
 
   insertEntryAt(entry, index) { // >>-Inserts an Entry at the specified position Index->>
