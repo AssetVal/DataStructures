@@ -18,6 +18,12 @@ table(sList.listContents());
 sList.invert();
 table(sList.listContents());
 
+sList.insertAfter('Tunic', 'Bow');
+table(sList.listContents());
+
+linksList.forEach(item => sList.push(item));
+table(sList.listContents());
+
 /*
  linksList.forEach(item => dList.push(item));
 

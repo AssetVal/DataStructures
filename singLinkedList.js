@@ -43,6 +43,24 @@ class SingLinkList{ // >>-Singly Linked List->>
     this.size += 1;
   }
 
+  push(value){
+    const node = new Node(value);
+    if (this.head === null){
+      this.head = node;
+    } else {
+      let currentNode = this.head;
+      while (currentNode){
+        if (currentNode.next === null){
+          currentNode.next = node;
+          node.next = null;
+          break;
+        }
+        currentNode = currentNode.next;
+      }
+    }
+    this.size += 1;
+  }
+
   extract(value) {
     let currentNode = this.head;
     if (currentNode.entry === value){ // <--Is the value pointing to the head? |>
@@ -108,19 +126,31 @@ class SingLinkList{ // >>-Singly Linked List->>
     this.size += 1;
   }
 
-  invert(){
-    let currentNode = this.head,
-      previousNode = null,
-      next;
+  insertAfter(target, value){
+    const node = new Node(value);
+    let currentNode = this.head;
     while (currentNode){
-      next = currentNode.next;
-      currentNode.next = previousNode;
+      if (currentNode.entry === target){
+        node.next = currentNode.next;
+        currentNode.next = node;
+        break;
+      }
+      currentNode = currentNode.next;
+    }
+    this.size += 1;
+  }
+
+  invert(){
+    let currentNode = this.head, // <--Start at the head-<
+      previousNode = null;
+    while (currentNode){
+      const next = currentNode.next; // <--The loop looks ahead at the next pointer-<
+      currentNode.next = previousNode; // <--On first itt. the head's 'next' is rereferenced to NULL, and what was the head will be passed forward to be the next rereference point-<
+      if (next === null) break; // <--If next is pointing to NULL, we know to not go there-<
       previousNode = currentNode;
-      if (!next){ break; }
       currentNode = next;
     }
     this.head = currentNode;
-    return currentNode;
   }
 
   // >>=Helper Methods=<<
